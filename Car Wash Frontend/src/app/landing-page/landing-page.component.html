@@ -1,0 +1,31 @@
+<section id="landingPage" class="d-flex align-items-center min-vh-100">
+  <div class="container">
+    <h1 class="text-center fw-bold fs-1">Welcome To</h1>
+    <h2 class="text-center fs-2 mb-5">Car Wash Corner</h2>
+    <div id="washerbutton">
+      <h2 class="text-center">Join us! Your car wash is one click away</h2>
+      <mat-menu #lazyMenu="matMenu">
+        <ng-template matMenuContent let-name="name">
+          <button mat-menu-item routerLink="/adminregister" class="d-none">
+            Register As Admin
+          </button>
+          <button class="btno" mat-menu-item (click)="regis()">
+            Register As User
+          </button>
+          <button class="btno" mat-menu-item routerLink="/washerregister">
+            Register As Washer
+          </button>
+        </ng-template>
+      </mat-menu>
+      <div>
+        <button
+          class="btn btn-dark my-2 px-4 py-2 d-table mx-auto rounded-pill"
+          [matMenuTriggerData]="{ name: 'Register' }"
+          [matMenuTriggerFor]="lazyMenu"
+        >
+          Register
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,61 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark py-2">
+  <div class="container">
+    <a class="navbar-brand d-flex" href="/landing-page">
+      <img src="https://png.pngtree.com/png-clipart/20230424/original/pngtree-car-wash-flat-icon-png-image_9093769.png" width="50" alt="" />
+      <div class="text-wrapper d-flex flex-column align-items-center justify-content-center">
+        <span class="txt text-white ms-3">CAR WASH</span>
+        <span class="text-white ms-3 d-block fs-6">CORNER</span>
+      </div>
+    </a>
+    <div>
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <mat-menu #lazyMenu="matMenu" class="mt-3 dropdown-login">
+            <ng-template matMenuContent let-name="name">
+              <button mat-menu-item routerLink="/adminlogin">
+                Login Admin
+              </button>
+              <button
+                mat-menu-item
+                *ngIf="!_authService.loggedIn()"
+                routerLink="/login"
+              >
+                Login User
+              </button>
+              <button mat-menu-item routerLink="/washerlogin">
+                Login Washer
+              </button>
+            </ng-template>
+          </mat-menu>
+          <button
+            color="warning"
+            class="nav-link active text-white bg-dark rounded-pill px-4 py-2"
+            mat-raised-button
+            [matMenuTriggerData]="{ name: 'Login' }"
+            *ngIf="!_authService.loggedIn()"
+            [matMenuTriggerFor]="lazyMenu"
+          >
+            Login
+          </button>
+        </li>
+
+        <li class="nav-item">
+          <button
+            color="warning"
+            class="nav-link active text-white bg-dark rounded-pill px-4 py-2"
+            mat-raised-button
+            style="cursor: pointer"
+            *ngIf="_authService.loggedIn()"
+            (click)="_authService.logoutUser()"
+          >
+            Logout
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+<footer class="fixed-bottom">
+  <p class="text-white text-center py-3 m-0">&#169; 2023 Car Wash Corner</p>
+</footer>
